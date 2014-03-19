@@ -60,6 +60,20 @@
 		50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF629517ECD46A001EB2F8 /* Icon-100.png */; };
 		50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A017ECD613001EB2F8 /* Icon-29.png */; };
 		50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A117ECD613001EB2F8 /* Icon-50.png */; };
+		B310C07A18CC710F00F0F90E /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = B310C07518CC710F00F0F90E /* blue.png */; };
+		B310C07B18CC710F00F0F90E /* gray.png in Resources */ = {isa = PBXBuildFile; fileRef = B310C07618CC710F00F0F90E /* gray.png */; };
+		B310C07C18CC710F00F0F90E /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = B310C07718CC710F00F0F90E /* green.png */; };
+		B310C07D18CC710F00F0F90E /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = B310C07818CC710F00F0F90E /* red.png */; };
+		B310C07E18CC710F00F0F90E /* yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = B310C07918CC710F00F0F90E /* yellow.png */; };
+		B310C08818CC722600F0F90E /* BlockSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B310C08618CC722600F0F90E /* BlockSprite.cpp */; };
+		B3465BE518D9E28A0048DAE8 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3BBAC6618A25E1D002F271D /* GameScene.cpp */; };
+		B3465BEC18D9E28E0048DAE8 /* BlockSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B310C08618CC722600F0F90E /* BlockSprite.cpp */; };
+		B3465BEF18D9E5F00048DAE8 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B35607A018A8D3AB0095EE13 /* background.png */; };
+		B3465BF618D9E5F80048DAE8 /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = B310C07518CC710F00F0F90E /* blue.png */; };
+		B3465BF718D9E5FC0048DAE8 /* gray.png in Resources */ = {isa = PBXBuildFile; fileRef = B310C07618CC710F00F0F90E /* gray.png */; };
+		B3465BF818D9E6000048DAE8 /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = B310C07718CC710F00F0F90E /* green.png */; };
+		B3465BF918D9E6030048DAE8 /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = B310C07818CC710F00F0F90E /* red.png */; };
+		B3465BFA18D9E6060048DAE8 /* yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = B310C07918CC710F00F0F90E /* yellow.png */; };
 		B35607A118A8D3AB0095EE13 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B35607A018A8D3AB0095EE13 /* background.png */; };
 		B3BBAC6818A25E1D002F271D /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3BBAC6618A25E1D002F271D /* GameScene.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
@@ -286,6 +300,14 @@
 		50EF629517ECD46A001EB2F8 /* Icon-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-100.png"; sourceTree = "<group>"; };
 		50EF62A017ECD613001EB2F8 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
 		50EF62A117ECD613001EB2F8 /* Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-50.png"; sourceTree = "<group>"; };
+		B310C07518CC710F00F0F90E /* blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue.png; sourceTree = "<group>"; };
+		B310C07618CC710F00F0F90E /* gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray.png; sourceTree = "<group>"; };
+		B310C07718CC710F00F0F90E /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
+		B310C07818CC710F00F0F90E /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
+		B310C07918CC710F00F0F90E /* yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow.png; sourceTree = "<group>"; };
+		B310C08518CC713D00F0F90E /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = ../Classes/Config.h; sourceTree = "<group>"; };
+		B310C08618CC722600F0F90E /* BlockSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BlockSprite.cpp; path = ../Classes/BlockSprite.cpp; sourceTree = "<group>"; };
+		B310C08718CC722600F0F90E /* BlockSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlockSprite.h; path = ../Classes/BlockSprite.h; sourceTree = "<group>"; };
 		B35607A018A8D3AB0095EE13 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		B3BBAC6618A25E1D002F271D /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameScene.cpp; path = ../Classes/GameScene.cpp; sourceTree = "<group>"; };
 		B3BBAC6718A25E1D002F271D /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = ../Classes/GameScene.h; sourceTree = "<group>"; };
@@ -369,6 +391,9 @@
 				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
 				B3BBAC6618A25E1D002F271D /* GameScene.cpp */,
 				B3BBAC6718A25E1D002F271D /* GameScene.h */,
+				B310C08518CC713D00F0F90E /* Config.h */,
+				B310C08618CC722600F0F90E /* BlockSprite.cpp */,
+				B310C08718CC722600F0F90E /* BlockSprite.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -492,6 +517,11 @@
 				1AFAF8B916D35E4900DB1158 /* CloseNormal.png */,
 				1AFAF8BA16D35E4900DB1158 /* CloseSelected.png */,
 				1AFAF8BB16D35E4900DB1158 /* HelloWorld.png */,
+				B310C07518CC710F00F0F90E /* blue.png */,
+				B310C07618CC710F00F0F90E /* gray.png */,
+				B310C07718CC710F00F0F90E /* green.png */,
+				B310C07818CC710F00F0F90E /* red.png */,
+				B310C07918CC710F00F0F90E /* yellow.png */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -690,10 +720,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
+				B310C07C18CC710F00F0F90E /* green.png in Resources */,
+				B310C07E18CC710F00F0F90E /* yellow.png in Resources */,
 				B35607A118A8D3AB0095EE13 /* background.png in Resources */,
+				B310C07B18CC710F00F0F90E /* gray.png in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
+				B310C07A18CC710F00F0F90E /* blue.png in Resources */,
 				1AFAF8BC16D35E4900DB1158 /* CloseNormal.png in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
@@ -707,6 +741,7 @@
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
+				B310C07D18CC710F00F0F90E /* red.png in Resources */,
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
 			);
@@ -717,9 +752,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				5087E75317EB910900C73F5D /* CloseNormal.png in Resources */,
+				B3465BEF18D9E5F00048DAE8 /* background.png in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
+				B3465BF918D9E6030048DAE8 /* red.png in Resources */,
 				5087E75417EB910900C73F5D /* CloseSelected.png in Resources */,
 				5087E75517EB910900C73F5D /* HelloWorld.png in Resources */,
+				B3465BF818D9E6000048DAE8 /* green.png in Resources */,
+				B3465BFA18D9E6060048DAE8 /* yellow.png in Resources */,
+				B3465BF618D9E5F80048DAE8 /* blue.png in Resources */,
+				B3465BF718D9E5FC0048DAE8 /* gray.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,6 +773,7 @@
 			files = (
 				B3BBAC6818A25E1D002F271D /* GameScene.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
+				B310C08818CC722600F0F90E /* BlockSprite.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
@@ -743,6 +785,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5087E75717EB910900C73F5D /* AppDelegate.cpp in Sources */,
+				B3465BE518D9E28A0048DAE8 /* GameScene.cpp in Sources */,
+				B3465BEC18D9E28E0048DAE8 /* BlockSprite.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -807,6 +851,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -828,9 +876,11 @@
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "";
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -838,6 +888,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -860,6 +914,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};
