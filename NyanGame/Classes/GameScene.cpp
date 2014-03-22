@@ -130,14 +130,33 @@ void GameScene::onTouchEnded(cocos2d::Touch *pTouch, cocos2d::Event *pEvent)
         Node* block = m_background->getChildByTag(tag);
         if (block)
         {
-            block->removeFromParentAndCleanup(true);
+            // コマが消えるアニメーションを作成
+            FadeOut* scale = FadeOut::create(FADEOUT_TIME);
+            
+            // コマを削除するアクションを生成
+            CallFuncN* func = CallFuncN::create(this, callfuncN_selector(GameScene::removingBlock));
+            
+            // アクションをつなげる
+            FiniteTimeAction* sequence = Sequence::create(scale, func, NULL);
+            
+            FiniteTimeAction* action;
+
+            action = sequence;
+            
+            block->runAction(action);
         }
         
     }
 }
 
-// タップされたコマのタグを取得
+// コマの削除
+void GameScene::removingBlock(Node* block)
+{
+    block->removeFromParentAndCleanup(true);
+}
 
+
+// タップされたコマのタグを取得
 void GameScene::getTouchBlockTag(Point touchPoint, int &tag, kBlock &blockType)
 {
     for (int x = 0; x < MAX_BLOICK_X; x++) {

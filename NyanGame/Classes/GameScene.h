@@ -14,6 +14,7 @@
 
 #define MAX_BLOICK_X 8
 #define MAX_BLOICK_Y 8
+#define FADEOUT_TIME 0.3f
 
 #define PNG_BACKGROUND "background.png"
 
@@ -49,6 +50,9 @@ protected:
 //    void removeBlock(std::list<int> blockTags, kBlock blockType);
     void removeBlock(kBlock blockType);
     bool hasSameColorBlock(std::list<int> blockTagList, int searchBlockTag);
+    
+    // 2-3-1
+    void removingBlock(cocos2d::Node* block);
     
 public:
     static cocos2d::Scene* createScene();
