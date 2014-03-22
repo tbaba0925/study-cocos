@@ -29,9 +29,6 @@ bool GameScene::init()
     }
     
     // タップイベントを取得する
-//    setTouchEnabled(true);
-//    setTouchMode(kCCTouchesOneByOne);
-    
     auto listener = EventListenerTouchOneByOne::create();
     listener->onTouchBegan = CC_CALLBACK_2(GameScene::onTouchBegan, this);
 //    listener->onTouchMoved = CC_CALLBACK_2(GameScene::onTouchMoved, this);
@@ -124,28 +121,46 @@ void GameScene::onTouchEnded(cocos2d::Touch *pTouch, cocos2d::Event *pEvent)
     
     if (tag != 0)
     {
-        // コマを削除
-        m_blockTags[blockType].remove(tag);
+        // 隣接するコマを取得する
+        list<int> sameColorBlockTags = getSameColorBlockTags(tag, blockType);
         
-        Node* block = m_background->getChildByTag(tag);
+        if (sameColorBlockTags.size() > 2)
+        {
+            // 隣接するコマを削除する
+            removeBlock(sameColorBlockTags, blockType);
+        }
+    }
+}
+
+// 配列のコマを削除
+void GameScene::removeBlock(list<int> blockTags, kBlock blockType)
+{
+    list<int>::iterator it = blockTags.begin();
+    while (it != blockTags.end()) {
+        // 既存配列から該当コマを削除
+        m_blockTags[blockType].remove(*it);
+        
+        // 対象となるコマを取得
+        Node* block = m_background->getChildByTag(*it);
+    
         if (block)
         {
             // コマが消えるアニメーションを作成
             FadeOut* scale = FadeOut::create(FADEOUT_TIME);
-            
+        
             // コマを削除するアクションを生成
             CallFuncN* func = CallFuncN::create(this, callfuncN_selector(GameScene::removingBlock));
-            
+        
             // アクションをつなげる
             FiniteTimeAction* sequence = Sequence::create(scale, func, NULL);
-            
+        
             FiniteTimeAction* action;
-
+        
             action = sequence;
-            
+        
             block->runAction(action);
         }
-        
+        it++;
     }
 }
 
@@ -174,6 +189,50 @@ void GameScene::getTouchBlockTag(Point touchPoint, int &tag, kBlock &blockType)
     }
 }
 
+// タップされたコマと同色でかつ、接しているコマの配列を返す
+list<int> GameScene::getSameColorBlockTags(int baseTag, kBlock blockType)
+{
+    // 同色のコマを格納する配列の初期化
+    list<int> sameColorBlockTags;
+    sameColorBlockTags.push_back(baseTag);
+    
+    list<int>::iterator it = sameColorBlockTags.begin();
+    while (it != sameColorBlockTags.end())
+    {
+        int tags[] = {
+            *it + 100, // right block tag
+            *it - 100, // left block tag
+            *it + 1,   // up block tag
+            *it - 1,   // down block tag
+        };
+        
+        for (int i = 0; i < sizeof(tags); i++) {
+            // 既にリストにあるか検索
+            if (!hasSameColorBlock(sameColorBlockTags, tags[i])) {
+                // コマ配列にあるか検索
+                if (hasSameColorBlock(m_blockTags[blockType], tags[i]))
+                {
+                    sameColorBlockTags.push_back(tags[i]);
+                }
+            }
+        }
+        it++;
+    }
+    return sameColorBlockTags;
+}
+
+// コマ配列に存在するか検索
+bool GameScene::hasSameColorBlock(list<int> blockTagList, int searchBlockTag)
+{
+    list<int>::iterator it;
+    for (it = blockTagList.begin(); it != blockTagList.end(); ++it) {
+        if (*it == searchBlockTag)
+        {
+            return true;
+        }
+    }
+    return false;
+}
 // タグ取得
 int GameScene::getTag(int posIndexX, int posIndexY)
 {
