@@ -43,12 +43,22 @@ protected:
     cocos2d::Point getPosition(int posIndexX, int posIndexY);
     int getTag(int posIndexX, int posIndexY);
     
+    // 2-2-5
+    void getTouchBlockTag(cocos2d::Point touchPoint, int &tag, kBlock &blockType);
+    std::list<int> getSameColorBlockTags(int baseTag, kBlock blockType);
+//    void removeBlock(std::list<int> blockTags, kBlock blockType);
+    void removeBlock(kBlock blockType);
+    bool hasSameColorBlock(std::list<int> blockTagList, int searchBlockTag);
+    
 public:
     static cocos2d::Scene* createScene();
     
     virtual bool init();
-    
+
     CREATE_FUNC(GameScene);
+    
+    virtual bool onTouchBegan(cocos2d::Touch* pTouch, cocos2d::Event* pEvent);
+    virtual void onTouchEnded(cocos2d::Touch* pTouch, cocos2d::Event* pEvent);
 };
 
 #endif /* defined(__NyanGame__GameScene__) */

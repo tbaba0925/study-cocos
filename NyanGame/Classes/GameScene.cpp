@@ -28,6 +28,18 @@ bool GameScene::init()
         return false;
     }
     
+    // タップイベントを取得する
+//    setTouchEnabled(true);
+//    setTouchMode(kCCTouchesOneByOne);
+    
+    auto listener = EventListenerTouchOneByOne::create();
+    listener->onTouchBegan = CC_CALLBACK_2(GameScene::onTouchBegan, this);
+//    listener->onTouchMoved = CC_CALLBACK_2(GameScene::onTouchMoved, this);
+    listener->onTouchEnded = CC_CALLBACK_2(GameScene::onTouchEnded, this);
+    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
+    
+    
+    
     // 変数初期化
     initForVariabales();
     
@@ -89,6 +101,56 @@ void GameScene::showBlock()
             pBlock->setPosition(getPosition(x, y));
             m_background->addChild(pBlock, kZOrderBlock, tag);
             
+        }
+    }
+}
+
+// タッチ開始イベント
+bool GameScene::onTouchBegan(cocos2d::Touch* pTouch, cocos2d::Event *pEvent)
+{
+    return true;
+}
+
+// タッチ終了イベント
+void GameScene::onTouchEnded(cocos2d::Touch *pTouch, cocos2d::Event *pEvent)
+{
+    // タップポイントの取得
+    Point touchPoint = m_background->convertTouchToNodeSpace(pTouch);
+    
+    // タップコマのTagを取得
+    int tag = 0;
+    kBlock blockType;
+    getTouchBlockTag(touchPoint, tag, blockType);
+    
+    if (tag != 0)
+    {
+        // コマを削除
+        m_blockTags[blockType].remove(tag);
+        
+        Node* block = m_background->getChildByTag(tag);
+        if (block)
+        {
+            block->removeFromParentAndCleanup(true);
+        }
+        
+    }
+}
+
+// タップされたコマのタグを取得
+
+void GameScene::getTouchBlockTag(Point touchPoint, int &tag, kBlock &blockType)
+{
+    for (int x = 0; x < MAX_BLOICK_X; x++) {
+        for (int y = 0; y < MAX_BLOICK_Y; y++) {
+            int currentTag = getTag(x, y);
+            Node* node = m_background->getChildByTag(currentTag);
+            if (node && node->boundingBox().containsPoint(touchPoint)) {
+                tag = currentTag;
+                blockType = ((BlockSprite*)node)->getBlockType();
+                
+                return;
+            }
+
         }
     }
 }
