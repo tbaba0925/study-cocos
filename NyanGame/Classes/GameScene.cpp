@@ -70,6 +70,12 @@ void GameScene::initForVariabales()
     BlockSprite* pBlock = BlockSprite::createWithBlockType(kBlockRed);
     m_blockSize = pBlock->getContentSize().height;
     
+    // コマ種類の配列生成
+    blockTypes.push_back(kBlockRed);
+    blockTypes.push_back(kBlockBlue);
+    blockTypes.push_back(kBlockYellow);
+    blockTypes.push_back(kBlockGray);
+    blockTypes.push_back(kBlockGreen);
 }
 
 // 位置取得
@@ -128,6 +134,9 @@ void GameScene::onTouchEnded(cocos2d::Touch *pTouch, cocos2d::Event *pEvent)
         {
             // 隣接するコマを削除する
             removeBlock(sameColorBlockTags, blockType);
+            
+            // コマ削除後のアニメーション
+            movingBlocksAnimation(sameColorBlockTags);
         }
     }
 }
@@ -233,6 +242,108 @@ bool GameScene::hasSameColorBlock(list<int> blockTagList, int searchBlockTag)
     }
     return false;
 }
+
+// コマ削除後のアニメーション
+void GameScene::movingBlocksAnimation(std::list<int> blocks)
+{
+    // コマの新しい位置を設定する
+    searchNewPosition(blocks);
+    
+    // 新しい位置がセットされたコマのアニメーション
+    moveBlock();
+}
+
+// 消えたコマを埋めるように新しい位置を設定
+void GameScene::searchNewPosition(std::list<int> blocks)
+{
+    // 消えるコマの数だけループ
+    list<int>::iterator block_iter = blocks.begin();
+    while (block_iter != blocks.end()) {
+        PositionIndex delPosIndex = getPositionIndex(*block_iter);
+
+        // コマ種類のループ
+        vector<kBlock>::iterator btype_iter = blockTypes.begin();
+        while (btype_iter != blockTypes.end()) {
+
+            // 各種類のコマの数だけループ
+            list<int>::iterator it = m_blockTags[*btype_iter].begin();
+            while (it != m_blockTags[*btype_iter].end()) {
+                PositionIndex targetPosIndex = getPositionIndex(*it);
+                
+                // 消えるコマの上に位置するコマに対して、移動先の位置を設定する
+                if (isJustAbove(delPosIndex, targetPosIndex))
+                {
+                    setNewPosition(*it, targetPosIndex);
+                }
+                it++;
+            }
+            btype_iter++;
+        }
+        block_iter++;
+    }
+}
+
+void GameScene::moveBlock()
+{
+    // コマ種類のループ
+    vector<kBlock>::iterator btype_iter = blockTypes.begin();
+    while (btype_iter != blockTypes.end()) {
+        // 各種類のコマの数だけループ
+        list<int>::iterator it = m_blockTags[*btype_iter].begin();
+        while (it != m_blockTags[*btype_iter].end()) {
+            BlockSprite* blockSprite = (BlockSprite*)m_background->getChildByTag(*it);
+            
+            int nextPosX = blockSprite->getNextPosX();
+            int nextPosY = blockSprite->getNextPosY();
+            
+            if (nextPosX != -1 || nextPosY != -1)
+            {
+                // 新しいタグを設定する
+                int newTag = getTag(nextPosX, nextPosY);
+                blockSprite->initNextPos();
+                blockSprite->setTag(newTag);
+                
+                // タグ一覧の値も新しいタグに変更する
+                *it = newTag;
+                
+                // アニメーションを設定する
+                MoveTo* move = MoveTo::create(MOVING_TIME, getPosition(nextPosX, nextPosY));
+                blockSprite->runAction(move);
+            }
+            it++;
+        }
+        btype_iter++;
+    }
+}
+
+// 新しい位置を設定
+void GameScene::setNewPosition(int tag, GameScene::PositionIndex posIndex)
+{
+    BlockSprite* blockSprite = (BlockSprite*)m_background->getChildByTag(tag);
+    int nextPosY = blockSprite->getNextPosY();
+    if (nextPosY == -1) {
+        nextPosY = posIndex.y;
+    }
+    
+    // 移動先の位置をセット
+    blockSprite->setNextPos(posIndex.x, --nextPosY);
+}
+
+// 対象のコマの直上にあるかどうかを判定
+bool GameScene::isJustAbove(GameScene::PositionIndex delPoosIndex, GameScene::PositionIndex targetPosIndex)
+{
+    return delPoosIndex.x == targetPosIndex.x && delPoosIndex.y < targetPosIndex.y;
+}
+
+// コマのインデックス取得
+GameScene::PositionIndex GameScene::getPositionIndex(int tag)
+{
+    int pos_x = (tag - kTagBaseBlock) / 100;
+    int pos_y = (tag - kTagBaseBlock) % 100;
+    
+    return PositionIndex(pos_x, pos_y);
+}
+
 // タグ取得
 int GameScene::getTag(int posIndexX, int posIndexY)
 {

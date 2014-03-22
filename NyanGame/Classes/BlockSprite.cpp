@@ -12,6 +12,7 @@ using namespace cocos2d;
 
 BlockSprite::BlockSprite()
 {
+    initNextPos();
 }
 
 BlockSprite::~BlockSprite()
@@ -66,4 +67,18 @@ const char* BlockSprite::getBlockImageFileName(kBlock blockType)
             CCASSERT(false, "invalid blockTyep");
             return "";
     }
+}
+
+// 移動先の初期化
+void BlockSprite::initNextPos()
+{
+    m_nextPosX = -1;
+    m_nextPosY = -1;
+}
+
+// 移動先インデックスをセット
+void BlockSprite::setNextPos(int nextPosX, int nextPosY)
+{
+    m_nextPosX = nextPosX;
+    m_nextPosY = nextPosY;
 }

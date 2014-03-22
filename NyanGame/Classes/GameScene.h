@@ -15,6 +15,7 @@
 #define MAX_BLOICK_X 8
 #define MAX_BLOICK_Y 8
 #define FADEOUT_TIME 0.3f
+#define MOVING_TIME 0.3f
 
 #define PNG_BACKGROUND "background.png"
 
@@ -30,6 +31,16 @@ protected:
     {
         kZOrderBackground,
         kZOrderBlock,
+    };
+    struct PositionIndex
+    {
+        PositionIndex(int x1, int y1)
+        {
+            x = x1;
+            y = y1;
+        }
+        int x;
+        int y;
     };
     
     // 2-2-3
@@ -53,15 +64,24 @@ protected:
     // 2-3-1
     void removingBlock(cocos2d::Node* block);
     
+    // 2-3-2
+    std::vector<kBlock> blockTypes;
+    PositionIndex getPositionIndex(int tag);
+    void setNewPosition(int tag, PositionIndex posIndex);
+    void searchNewPosition(std::list<int> blocks);
+    void moveBlock();
+    void movingBlocksAnimation(std::list<int> blocks);
+    bool isJustAbove(PositionIndex delPoosIndex, PositionIndex targetPosIndex);
+    
 public:
     static cocos2d::Scene* createScene();
     
     virtual bool init();
-
-    CREATE_FUNC(GameScene);
-    
     virtual bool onTouchBegan(cocos2d::Touch* pTouch, cocos2d::Event* pEvent);
     virtual void onTouchEnded(cocos2d::Touch* pTouch, cocos2d::Event* pEvent);
+    
+     CREATE_FUNC(GameScene);
+    
 };
 
 #endif /* defined(__NyanGame__GameScene__) */
